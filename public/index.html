@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to Firebase Hosting</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <!-- jquery -->
+    <script src="assets/lib/jquery-2.1.4.min.js"></script>
+    <!-- bootstrap -->
+    <script src="assets/lib/bootstrap.min.js"></script>
+    <!-- AngularJS -->
+    <script src="assets/lib/angular.min.js"></script>
+    <!-- angularjs router -->
+    <script src="assets/lib/angular-ui-router.min.js"></script>
+    <!-- Firebase -->
+    <script src="node_modules/firebase/firebase-app.js"></script>
+    <script src="node_modules/firebase/firebase-auth.js"></script>
+    <script src="node_modules/firebase/firebase-database.js"></script>
+    <!-- AngularFire -->
+    <script src="node_modules/angularfire/dist/angularfire.js"></script>
+    <!-- app module -->
+    <script src="src/app.js"></script>
+    <!-- routes -->
+    <script src="src/routes.js"></script>
+    <!-- controllers -->
+    <script src="src/views/public/public.controller.js"></script>
+    <script src="src/views/products/products.controller.js"></script>
+    <script src="src/views/shoppingCart/shoppingCart.controller.js"></script>
+    <script src="src/views/checkOut/checkOut.controller.js"></script>
+    <script src="src/views/orderSuccess/orderSuccess.controller.js"></script>
+    <script src="src/views/myOrders/myOrders.controller.js"></script>
+    <script src="src/views/admin/admin.controller.js"></script>
+    <script src="src/views/sup/orders/adminOrders.controller.js"></script>   
+    <script src="src/views/sup/products/adminProducts.controller.js"></script>
+    <script src="src/views/logIn/logIn.controller.js"></script>
+    <script src="src/mainCtrl.controller.js"></script>
+  </head>
+  <body ng-app="app">
+    <nav class="navbar navbar-default" ng-controller='mainCtrl as $ctrl'>
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">NavBar</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a ui-sref="public">Home <span class="sr-only">(current)</span></a></li>
+            <li><a ui-sref="shoppingCart">shopping Cart</a></li>
+            <li class="dropdown" ng-if='$ctrl.user'>
+              <a class="dropdown-toggle" data-toggle="dropdown" 
+              role="button" aria-haspopup="true" aria-expanded="false">
+              {{$ctrl.user}} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a ui-sref='myOrders'>my orders</a></li>
+                <li><a ui-sref='admin.orders'>manage orders </a></li>
+                <li><a ui-sref='admin.products'>manage products</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a ng-click='$ctrl.logOut()'>log out</a></li>
+              </ul>
+            </li>
+            <li ng-if='!$ctrl.user'><a ui-sref="logIn"> log in</a></li>
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+      <ui-view></ui-view>
+    </div>
+  </body>
+</html>
